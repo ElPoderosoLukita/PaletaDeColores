@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paleta de colores</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    colors:['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'orange', 'aliceblue', 'antiquewhite', 'gainsboro', 'goldenrod', 'lightgrey', 'lightpink', 'lightsalmon', 'lightskyblue'],
+                    title: "hola",
+                    stylesDiv:{
+                        weigth:"100vw",
+                        height:"100vh",
+                        backgroundColor:"beige",
+                    },
+                    stylesH1:{
+                        color:"darkslategray",
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        textAlign:"center",
+                        paddingTop:"75px"
+                    },
+                    stylesP:{
+                        color:"darkslategray",
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        textAlign:"center",
+                        paddingTop:"25px",
+                    },
+                    stylesDiv2:{
+                        display:"flex",
+                        margin:"0 auto",
+                        backgroundColor:"darkslategray",
+                        width:"60%",
+                        marginTop:"50px",
+                        height:"80px",
+                        cursor:"pointer",
+                        borderRadius:"10px",
+                        justifyContent:"center",
+                        alignItems:"center"
+                    },
+                    stylesP2:{
+                        color:"white",
+                        fontSize:"25px",
+                        fontFamily:"Arial",
+                    },
+                    stylesSpan:{
+                        color:"beige",
+                    },
+                };
+            },
+            computed:{
+                colorView(){
+                    return this.stylesDiv.backgroundColor;
+                }
+            },
+            methods: {
+                changeColor(){
+                    const color = Math.round(Math.random() * (25 - 0) + 0);
+                    this.stylesDiv.backgroundColor = this.colors[color];
+                    this.stylesSpan.color = this.colors[color];
+                },
+            },
+            template: `
+                <div :style="stylesDiv">
+                    <h1 :style="stylesH1">PALETA DE COLORES</h1>
+                    <p :style="stylesP">Dale click al boton y cambia el color</p>
+                    
+                    <div class="hola" :style="stylesDiv2" @click="changeColor">
+                        <p :style="stylesP2">Estas viendo el color: <span :style="stylesSpan">{{colorView}}</span></p>
+                    </div>
+                </div>
+            `
+        })
+
+        const vm = app.mount('#app');
+    </script>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        @media (min-width="375px") {
+            .hola{
+                background-color: red !important;
+            }
+        }
+    </style>
+</body>
+</html>
